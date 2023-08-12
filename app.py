@@ -72,12 +72,12 @@ def footer():
     layout(*myargs)
 
 # Appname
-st.set_page_config(page_title="AI QR Code Generator")
+st.set_page_config(page_title="AI QR Code Generator",layout="wide")
 
 st.title("AI QR Code Generator")
 
 # Split the page into two columns
-col1, col2 = st.columns(2)
+col1, col2 = st.columns(2,gap='medium')
 
 # Form UI in the first column
 with col1:
