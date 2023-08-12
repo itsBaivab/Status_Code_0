@@ -1,5 +1,3 @@
-import os
-# import app
 from gradio_client import Client
 
 
@@ -23,5 +21,4 @@ def generate_qr_code(URL,positive_prompt,negative_prompt,Sampler,Strength,Condit
     tmp = result
     return tmp
   # Get the image content from the result
-
-    print(tmp)
+  #image = Image.open(result)
