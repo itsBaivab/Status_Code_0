@@ -59,7 +59,7 @@ Strength = float(strength)
 Guidance_scale = float(guidance_scale)
 Seed = int(seed)
 
-URL =""
+URL ="this is a qr code ai art generator"
 if genarate:
     genimg = QR_Gen.generate_qr_code(URL,positive_prompt, negative_prompt,Sampler,Strength,Conditioning_scale,Guidance_scale,Seed)
     image = Image.open(genimg)
