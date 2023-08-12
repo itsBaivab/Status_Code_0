@@ -1,2 +1,2 @@
-streamlit==0.88.0
-gradio-client==2.0.8
+streamlit==1.25.0
+gradio-client==0.4.0
