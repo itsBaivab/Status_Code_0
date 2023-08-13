@@ -1,6 +1,8 @@
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from PIL import Image
+import os
+
 
 def create_student_pdf(data_dict, photo_filename, pdf_filename):
     c = canvas.Canvas(pdf_filename, pagesize=letter)
@@ -20,6 +22,7 @@ def create_student_pdf(data_dict, photo_filename, pdf_filename):
 
     # Add image inside the boundary
     photo = Image.open(photo_filename)
+    print('Inside create' ,photo_filename )
     c.drawImage(photo_filename, x_pos, y_pos, width=image_width, height=image_height)
 
     # Set font and size for titles and content
@@ -50,7 +53,8 @@ def create_student_pdf(data_dict, photo_filename, pdf_filename):
     # Save the canvas
     c.save()
 
-def create_qr_code_pdf(Name,Birthday, FathersName,MothersName,Address,Gender,Contact,anothercontact,Contact_Email,SchoolName,SchoolAddress,city,state,ZipCode,Country,Blood_Group,Identification_mark,Allergenes):
+def create_qr_code_pdf(save_path,Name,Birthday, FathersName,MothersName,Address,Gender,Contact,anothercontact,Contact_Email,SchoolName,SchoolAddress,city,state,ZipCode,Country,Blood_Group,Identification_mark,Allergenes):
+        
         data_dict = {
             "Name": str(Name),
             "Date of Birth": str(Birthday),
@@ -73,11 +77,26 @@ def create_qr_code_pdf(Name,Birthday, FathersName,MothersName,Address,Gender,Con
             "Allergen": str(Allergenes),
         }
 
-        photo_filename = "de253f86288c3c7aa000af4319a5969efd068765a372e5c07cb6f102.jpg"  # Provide the path to the student's photo
+
+        photo_filename = save_path# Provide the path to the student's photo
         pdf_filename = "student_information_boundary_and_image.pdf"
+        print('photo_filename',photo_filename)
 
         create_student_pdf(data_dict, photo_filename, pdf_filename)
         file = print(f"PDF created: {pdf_filename}")
+        
+        pdf_file_path = "student_information_boundary_and_image.pdf" 
+        file_URL = os.system("curl -F'file=@student_information_boundary_and_image.pdf' https://ttm.sh")
+        print(file_URL)         
+        # Construct the curl command
+        curl_command = f"curl -F'file=@{pdf_file_path}' https://ttm.sh"
+
+        # Run the curl command and capture the output
+        file_URL = os.popen(curl_command).read().strip()
+
+        print("Uploaded file URL:", file_URL)
         print(file)
-        return file
+        print(file_URL)
+        return str(file_URL)
+
 

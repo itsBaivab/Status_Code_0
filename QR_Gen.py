@@ -2,10 +2,10 @@ from gradio_client import Client
 
 
   
-def generate_qr_code(URL,positive_prompt,negative_prompt,Sampler,Strength,Conditioning_scale,Guidance_scale,Seed):
+def generate_qr_code(fileURL,positive_prompt,negative_prompt,Sampler,Strength,Conditioning_scale,Guidance_scale,Seed):
     client = Client("https://huggingface-projects-qr-code-ai-art-generator--85d7mzwl6.hf.space/")
     result = client.predict(
-        				URL,	# str  in 'QR Code Content' Textbox component
+        				fileURL,	# str  in 'QR Code Content' Textbox component
         				positive_prompt,	# str  in 'Prompt' Textbox component
         				negative_prompt,	# str  in 'Negative Prompt' Textbox component
         			    Guidance_scale,	# int | float (numeric value between 0.0 and 50.0) in 'Guidance Scale' Slider component

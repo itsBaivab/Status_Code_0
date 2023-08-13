@@ -80,11 +80,19 @@ st.title("AI QR Code Generator")
 # Split the page into two columns
 col1, col2 = st.columns(2,gap='medium')
 
+
+
+
+
+
+
+
+
 # Form UI in the first column
 with col1:
     st.text('Fill info')
     with st.form(key="form1"):
-        PF = st.file_uploader('Upload a jpg or jpeg')
+        uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
         Name = st.text_input('Enter First name')
         Address = st.text_input('Enter your address')
         Birthday = st.date_input('Your birthday')
@@ -122,9 +130,22 @@ with col2:
 # Process form submissions and getting the link of the generated pdf
 if submit:
     st.write(Name,  Birthday, FathersName, MothersName, Gender)
-   
-    genpfd = pdf.create_qr_code_pdf(Name,Birthday,FathersName,MothersName,Address,Gender,Contact,anothercontact,Contact_Email,SchoolName,SchoolAddress,city,state,ZipCode,Country,Blood_Group,Identification_mark,Allergenes)
+    if uploaded_file is not None:
+        st.subheader("Uploaded Image")
+        st.image(uploaded_file, caption="Uploaded Image", use_column_width=True)
+    
+        save_path = "uploaded_image.png"
+        pil_image = Image.open(uploaded_file)
+        pil_image.save(save_path)
+        st.success(f"Image saved as {save_path}")
+    else:
+        st.info("Please upload an image.")
+        
+        
+       
+    fileURL = pdf.create_qr_code_pdf(save_path,Name,Birthday,FathersName,MothersName,Address,Gender,Contact,anothercontact,Contact_Email,SchoolName,SchoolAddress,city,state,ZipCode,Country,Blood_Group,Identification_mark,Allergenes)
     st.success("In the next step enter your prompt")
+    st.write(fileURL)
 #QR code generation
 if genarate:
     positive_prompt = str(p_prompt)
@@ -136,7 +157,7 @@ if genarate:
     Seed = int(seed)
     URL = "this is a qr code ai art generator"
     
-    genimg = QR_Gen.generate_qr_code(URL, positive_prompt, negative_prompt, Sampler, Strength, Conditioning_scale, Guidance_scale, Seed)
+    genimg = QR_Gen.generate_qr_code(fileURL, positive_prompt, negative_prompt, Sampler, Strength, Conditioning_scale, Guidance_scale, Seed)
     image = Image.open(genimg)
     st.image(image, caption='Generated QR code')
     st.success("QR code generated successfully")
