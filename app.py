@@ -65,15 +65,15 @@ if submit:
     st.write(Name,  Birthday, FathersName, MothersName, Gender)
     if uploaded_file is not None:
         st.subheader("Uploaded Image")
-        st.image(uploaded_file, caption="Uploaded Image", use_column_width=True)
+        # st.image(uploaded_file, caption="Uploaded Image", use_column_width=True) #used for showing the uploaded image
     
         save_path = "uploaded_image.png"
         pil_image = Image.open(uploaded_file)
         pil_image.save(save_path)
         st.success(f"Image saved as {save_path}")
-        fileURL = str(pdf.create_qr_code_pdf(Name,Birthday,FathersName,MothersName,Address,Gender,Contact,anothercontact,Contact_Email,SchoolName,SchoolAddress,city,state,ZipCode,Country,Blood_Group,Identification_mark,Allergenes))
+        # fileURL = str(pdf.create_qr_code_pdf(Name,Birthday,FathersName,MothersName,Address,Gender,Contact,anothercontact,Contact_Email,SchoolName,SchoolAddress,city,state,ZipCode,Country,Blood_Group,Identification_mark,Allergenes)) #used for generating the pdf
         st.success("In the next step enter your prompt")
-        st.write(fileURL)
+        # st.write(fileURL) #used for showing the link of the generated pdf
     else:
         st.info("Please upload an image.")
         
@@ -84,7 +84,7 @@ Conditioning_scale = float(conditioning_scale)
 Strength = float(strength)
 Guidance_scale = float(guidance_scale)
 Seed = int(seed)
-fileURL = str(pdf.create_qr_code_pdf(Name,Birthday,FathersName,MothersName,Address,Gender,Contact,anothercontact,Contact_Email,SchoolName,SchoolAddress,city,state,ZipCode,Country,Blood_Group,Identification_mark,Allergenes))
+fileURL = str(pdf.create_qr_code_pdf(Name,Birthday,FathersName,MothersName,Address,Gender,Contact,anothercontact,Contact_Email,SchoolName,SchoolAddress,city,state,ZipCode,Country,Blood_Group,Identification_mark,Allergenes)) #used for generating the pdf but it is contineously generating and uploading the pdf after every page refresh
     
 #QR code generation
 if genarate:
