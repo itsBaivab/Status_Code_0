@@ -84,11 +84,11 @@ Conditioning_scale = float(conditioning_scale)
 Strength = float(strength)
 Guidance_scale = float(guidance_scale)
 Seed = int(seed)
-fileURL = str(pdf.create_qr_code_pdf(Name,Birthday,FathersName,MothersName,Address,Gender,Contact,anothercontact,Contact_Email,SchoolName,SchoolAddress,city,state,ZipCode,Country,Blood_Group,Identification_mark,Allergenes)) #used for generating the pdf but it is contineously generating and uploading the pdf after every page refresh
-    
+
 #QR code generation
 if genarate:
-    genimg = QR_Gen.generate_qr_code(fileURL,positive_prompt, negative_prompt, Sampler, Strength, Conditioning_scale, Guidance_scale, Seed)
+    fileURL = str(pdf.create_qr_code_pdf(Name,Birthday,FathersName,MothersName,Address,Gender,Contact,anothercontact,Contact_Email,SchoolName,SchoolAddress,city,state,ZipCode,Country,Blood_Group,Identification_mark,Allergenes)) #used for generateing pdf upload and returning the upload link
+    genimg = QR_Gen.generate_qr_code(fileURL,positive_prompt, negative_prompt, Sampler, Strength, Conditioning_scale, Guidance_scale, Seed) #used for generateing 
     image = Image.open(genimg)
     st.image(image, caption='Generated QR code')
     st.success("QR code generated successfully")
