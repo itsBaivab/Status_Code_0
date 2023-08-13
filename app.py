@@ -1,5 +1,6 @@
 import streamlit as st
 import QR_Gen
+import pdf_create as pdf
 from PIL import Image
 from htbuilder import HtmlElement, div, ul, li, br, hr, a, p, img, styles, classes, fonts
 from htbuilder.units import percent, px
@@ -84,8 +85,7 @@ with col1:
     st.text('Fill info')
     with st.form(key="form1"):
         PF = st.file_uploader('Upload a jpg or jpeg')
-        FirstName = st.text_input('Enter First name')
-        LastName = st.text_input('Enter Last name')
+        Name = st.text_input('Enter First name')
         Address = st.text_input('Enter your address')
         Birthday = st.date_input('Your birthday')
         Gender = st.radio('Gender', ['Male', 'Female', 'Others'])
@@ -119,11 +119,13 @@ with col2:
         seed = st.slider('Seed value', -1, 9999999999)
         genarate = st.form_submit_button(label="Generate")
 
-# Process form submissions and QR code generation
+# Process form submissions and getting the link of the generated pdf
 if submit:
-    st.write(FirstName, LastName, Birthday, FathersName, MothersName, Gender)
+    st.write(Name,  Birthday, FathersName, MothersName, Gender)
+   
+    genpfd = pdf.create_qr_code_pdf(Name,Birthday,FathersName,MothersName,Address,Gender,Contact,anothercontact,Contact_Email,SchoolName,SchoolAddress,city,state,ZipCode,Country,Blood_Group,Identification_mark,Allergenes)
     st.success("In the next step enter your prompt")
-
+#QR code generation
 if genarate:
     positive_prompt = str(p_prompt)
     negative_prompt = str(n_prompt)

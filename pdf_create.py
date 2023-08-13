@@ -50,28 +50,34 @@ def create_student_pdf(data_dict, photo_filename, pdf_filename):
     # Save the canvas
     c.save()
 
-if __name__ == "__main__":
-    data_dict = {
-        "Name": "Souradip",
-        "Date of Birth": "2005-08-12",
-        "Address": "223/4 A.C. Road South",
-        "Father's Name": "John Doe",
-        "Mother's Name": "Jane Doe",
-        "Gender": "Male",
-        "Contact No.": "9002562424",
-        "School": "ABC School",
-        "School Location": "Example City",
-        "City": "Example City",
-        "District": "Example District",
-        "State": "Example State",
-        "Country": "Example Country",
-        "Blood Group": "A+",
-        "Identification Mark": "Mole on left cheek",
-        "Allergen": "Peanuts"
-    }
-    
-    photo_filename = "/kaggle/input/imageof/student.jpg"  # Provide the path to the student's photo
-    pdf_filename = "student_information_boundary_and_image.pdf"
+def create_qr_code_pdf(Name,Birthday, FathersName,MothersName,Address,Gender,Contact,anothercontact,Contact_Email,SchoolName,SchoolAddress,city,state,ZipCode,Country,Blood_Group,Identification_mark,Allergenes):
+        data_dict = {
+            "Name": str(Name),
+            "Date of Birth": str(Birthday),
+            "Address": str(Address),
+            "Father's Name": str(FathersName),
+            "Mother's Name": str(MothersName),
+            "Gender": str(Gender),
+            "Contact No.": str(Contact),
+            "Another Contact No.": str(anothercontact),
+            "Contact Email": str(Contact_Email),
+            "School": str(SchoolName),
+            "School Location": str(SchoolAddress),
+            "City": str(city),
+            "District": str(state),
+            "State": str(state),
+            "Country": str(Country),
+            "Zip Code": str(ZipCode),
+            "Blood Group":  str(Blood_Group),
+            "Identification Mark": str(Identification_mark),
+            "Allergen": str(Allergenes),
+        }
 
-    create_student_pdf(data_dict, photo_filename, pdf_filename)
-    print(f"PDF created: {pdf_filename}")
+        photo_filename = "de253f86288c3c7aa000af4319a5969efd068765a372e5c07cb6f102.jpg"  # Provide the path to the student's photo
+        pdf_filename = "student_information_boundary_and_image.pdf"
+
+        create_student_pdf(data_dict, photo_filename, pdf_filename)
+        file = print(f"PDF created: {pdf_filename}")
+        print(file)
+        return file
+
