@@ -53,7 +53,7 @@ def create_student_pdf(data_dict, photo_filename, pdf_filename):
     # Save the canvas
     c.save()
 
-def create_qr_code_pdf(save_path,Name,Birthday, FathersName,MothersName,Address,Gender,Contact,anothercontact,Contact_Email,SchoolName,SchoolAddress,city,state,ZipCode,Country,Blood_Group,Identification_mark,Allergenes):
+def create_qr_code_pdf(Name,Birthday, FathersName,MothersName,Address,Gender,Contact,anothercontact,Contact_Email,SchoolName,SchoolAddress,city,state,ZipCode,Country,Blood_Group,Identification_mark,Allergenes):
         
         data_dict = {
             "Name": str(Name),
@@ -78,7 +78,7 @@ def create_qr_code_pdf(save_path,Name,Birthday, FathersName,MothersName,Address,
         }
 
 
-        photo_filename = save_path# Provide the path to the student's photo
+        photo_filename = "uploaded_image.png" # Provide the path to the student's photo
         pdf_filename = "student_information_boundary_and_image.pdf"
         print('photo_filename',photo_filename)
 
@@ -98,5 +98,4 @@ def create_qr_code_pdf(save_path,Name,Birthday, FathersName,MothersName,Address,
         print(file)
         print(file_URL)
         return str(file_URL)
-
 
