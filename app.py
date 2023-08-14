@@ -43,7 +43,7 @@ with st.form(key="form1"):
 
 # Controlnet UI in the second column
     with col2:
-        st.title("Controlnet Configuration")
+        st.title("AI Configuration")
 
         input_choice = st.radio("Select Input Type", ["Dropdown", "Text Field"])
         p_prompt = ""
