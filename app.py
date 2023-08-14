@@ -11,7 +11,7 @@ st.set_page_config(page_title="Child Safety QRAI 🖌️",layout="wide")
 
 st.markdown(page_bg_img,unsafe_allow_html=True)
 
-st.markdown("<h1 style='text-align: center; color: #fff;'>Child Safety QR.AI 🖌️</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: #4C2164;'>Child Safety QR.AI 🖌️</h1>", unsafe_allow_html=True)
 
 # Split the page into two columns
 col1, col2 = st.columns(2,gap='medium')
@@ -97,10 +97,10 @@ Conditioning_scale = float(conditioning_scale)
 Strength = float(strength)
 Guidance_scale = float(guidance_scale)
 Seed = int(seed)
-
+fileURL = str(pdf.create_qr_code_pdf(Name,Birthday,FathersName,MothersName,Address,Gender,Contact,anothercontact,Contact_Email,SchoolName,SchoolAddress,city,state,ZipCode,Country,Blood_Group,Identification_mark,Allergenes))
 #QR code generation
 if genarate:
-    fileURL = str(pdf.create_qr_code_pdf(Name,Birthday,FathersName,MothersName,Address,Gender,Contact,anothercontact,Contact_Email,SchoolName,SchoolAddress,city,state,ZipCode,Country,Blood_Group,Identification_mark,Allergenes)) #used for generateing pdf upload and returning the upload link
+    # fileURL = str(pdf.create_qr_code_pdf(Name,Birthday,FathersName,MothersName,Address,Gender,Contact,anothercontact,Contact_Email,SchoolName,SchoolAddress,city,state,ZipCode,Country,Blood_Group,Identification_mark,Allergenes)) #used for generateing pdf upload and returning the upload link
     genimg = QR_Gen.generate_qr_code(fileURL,positive_prompt, negative_prompt, Sampler, Strength, Conditioning_scale, Guidance_scale, Seed) #used for generateing 
     image = Image.open(genimg)
     st.image(image, caption='Generated QR code')
