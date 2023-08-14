@@ -68,7 +68,7 @@ def create_qr_code_pdf(Name,Birthday, FathersName,MothersName,Address,Gender,Con
             "School": str(SchoolName),
             "School Location": str(SchoolAddress),
             "City": str(city),
-            "District": str(state),
+            
             "State": str(state),
             "Country": str(Country),
             "Zip Code": str(ZipCode),
