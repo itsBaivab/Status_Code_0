@@ -11,7 +11,7 @@ st.set_page_config(page_title="Child Safety QRAI 🖌️", layout="wide")
 
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
-st.markdown("<h1 style='text-align: center; color: #4C2164;'>Child Safety QR.AI 🖌️</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: #fff;'>Child Safety QR.AI 🖌️</h1>", unsafe_allow_html=True)
 
 # Split the page into two columns
 col1, col2 = st.columns(2, gap='medium')
@@ -40,7 +40,7 @@ with st.form(key="form1"):
         Blood_Group = st.selectbox('Blood Group', ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'])
         Identification_mark = st.text_input('Identification mark')
         Allergenes = st.text_input('Allergenes')
-        
+
 # Controlnet UI in the second column
     with col2:
         st.title("Controlnet Configuration")
@@ -49,7 +49,15 @@ with st.form(key="form1"):
         p_prompt = ""
 
         if input_choice == "Dropdown":
-            dropdown_choice = st.selectbox("Select  promopt ", ["Sky view of highly aesthetic, ancient greek thermal baths in beautiful nature", "Bright sunshine coming through the cracks of a wet, cave wall of big rocks","A sky view of a colorful lakes and rivers flowing through the deser,concept art A surreal sight of a crystal-clear lake in the middle of the desert, reflecting the stars of the Milky Way. The juxtaposition of the arid landscape and the tranquil waters adds a dream-like quality to the scene","Sunlight filtering through a dense forest, creating a magical glow,In the heart of the tranquil woods, nature's embrace reveals a realm of enchanting radiance,blended"])
+            dropdown_choice = st.selectbox("Select promopt", [
+                "Sky view of highly aesthetic, ancient greek thermal baths in beautiful nature",
+                "Bright sunshine coming through the cracks of a wet, cave wall of big rocks",
+                "A sky view of colorful lakes and rivers flowing through the desert",
+                "Concept art: A surreal sight of a crystal-clear lake in the middle of the desert, reflecting the stars of the Milky Way. The juxtaposition of the arid landscape and the tranquil waters adds a dream-like quality to the scene",
+                "Sunlight filtering through a dense forest, creating a magical glow",
+                "In the heart of the tranquil woods, nature's embrace reveals a realm of enchanting radiance",
+                "Blended"
+            ])
             p_prompt = dropdown_choice
             st.write("Selected:", dropdown_choice)
         else:
@@ -58,20 +66,24 @@ with st.form(key="form1"):
             st.write("Entered:", text_input)
 
         
-        seed = st.slider('Seed value', -1, 9999999999,9635874126)
+        seed = st.slider('Seed value', -1, 9999999999, 9635874126)
     genarate = st.form_submit_button(label="Generate", use_container_width=True)
 
 # QR code generation
 if genarate:
     st.subheader("Uploaded Image")
-    save_path = "uploaded_image.png"
-    pil_image = Image.open(uploaded_file)
-    pil_image.save(save_path)
-    st.success("Please wait while we generate your QR code, it will take some time")
-    fileURL = str(pdf.create_qr_code_pdf(Name, Birthday, FathersName, MothersName, Address, Gender, Contact,
-                                         anothercontact, Contact_Email, SchoolName, SchoolAddress, city, state,
-                                         ZipCode, Country, Blood_Group, Identification_mark, Allergenes))
-    genimg = QR_Gen.generate_qr_code(fileURL, p_prompt,  seed)
-    image = Image.open(genimg)
-    st.image(image, caption='Generated QR code')
-    st.success("QR code generated successfully")
+    
+    if uploaded_file is None:
+        st.error("Please upload an image to proceed.")
+    else:
+        save_path = "uploaded_image.png"
+        pil_image = Image.open(uploaded_file)
+        pil_image.save(save_path)
+        st.success("Please wait while we generate your QR code, it will take some time")
+        fileURL = str(pdf.create_qr_code_pdf(Name, Birthday, FathersName, MothersName, Address, Gender, Contact,
+                                             anothercontact, Contact_Email, SchoolName, SchoolAddress, city, state,
+                                             ZipCode, Country, Blood_Group, Identification_mark, Allergenes))
+        genimg = QR_Gen.generate_qr_code(fileURL, p_prompt,  seed)
+        image = Image.open(genimg)
+        st.image(image, caption='Generated QR code')
+        st.success("QR code generated successfully")
