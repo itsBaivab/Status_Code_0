@@ -11,7 +11,7 @@ st.set_page_config(page_title="Child Safety QRAI 🖌️", layout="wide")
 
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
-st.markdown("<h1 style='text-align: center; color: #fff;'>Child Safety QR.AI 🖌️</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: #4C2164;'>Child Safety QR.AI 🖌️</h1>", unsafe_allow_html=True)
 
 # Split the page into two columns
 col1, col2 = st.columns(2, gap='medium')
