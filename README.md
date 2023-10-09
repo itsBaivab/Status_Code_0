@@ -1,7 +1,7 @@
 # QR.AI by Cryptic Wizards
 ![Cryptic Wizards Logo](https://path-to-your-logo-image.png)
 
-## Table of Contents
+## Table of Contents about this project
 
 - [About](#about)
 - [Features](#features)
