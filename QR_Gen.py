@@ -3,7 +3,7 @@ from gradio_client import Client
 
   
 def generate_qr_code(fileURL,positive_prompt,Seed):
-    client = Client("https://huggingface-projects-qr-code-ai-art-generator--85d7mzwl6.hf.space/")
+    client = Client("https://huggingface-projects-qr-code-ai-art-generator.hf.space/")
     result = client.predict(
         				fileURL,	# str  in 'QR Code Content' Textbox component
         				positive_prompt,	# str  in 'Prompt' Textbox component

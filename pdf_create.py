@@ -86,16 +86,15 @@ def create_qr_code_pdf(Name,Birthday, FathersName,MothersName,Address,Gender,Con
         file = print(f"PDF created: {pdf_filename}")
         
         pdf_file_path = "student_information_boundary_and_image.pdf" 
-        file_URL = os.system("curl -F'file=@student_information_boundary_and_image.pdf' https://ttm.sh")
-        print(file_URL)         
+        #file_URL = os.system("curl -F'file=@student_information_boundary_and_image.pdf' https://ttm.sh")
+        #print(file_URL)         
         # Construct the curl command
-        curl_command = f"curl -F'file=@{pdf_file_path}' https://ttm.sh"
-
+        #curl_command = f"curl -F'file=@{pdf_file_path}' https://ttm.sh"
+        curl_command = f'curl -X POST --data-binary "@{pdf_file_path}" --header "Content-Type: application/pdf" "https://www.filestackapi.com/api/store/S3?key=A2KEL5NMLSdiWJ2LMJP20z"'
         # Run the curl command and capture the output
         file_URL = os.popen(curl_command).read().strip()
-
-        print("Uploaded file URL:", file_URL)
+        file_URL = file_URL.split('"')[3]
+        print("Uploaded file URL:", str(file_URL))
         print(file)
         print(file_URL)
-        return str(file_URL)
-
+        return str(str(file_URL))
