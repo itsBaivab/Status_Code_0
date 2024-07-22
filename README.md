@@ -1,4 +1,5 @@
 # QR.AI by Cryptic Wizards
+
 ![Cryptic Wizards Logo](https://path-to-your-logo-image.png)
 
 ## Table of Contents
@@ -62,6 +63,14 @@ Cryptic Wizards proudly presents an innovative solution developed for the MLH Ha
 
 ## Usage
 
+0. Setup your .env file
+
+   ```
+   GOOEY_API_KEY=
+   AZURE_STORAGE_CONNECTION_STRING=
+
+   ```
+
 1. Run the Streamlit app:
 
    ```bash
@@ -98,6 +107,8 @@ We would like to express our gratitude to the mentors, organizers, and sponsors 
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
 ```
 
 Please replace placeholders like `https://path-to-your-logo-image.png`, `YourUsername`, `YourRepository`, `https://path-to-your-demo-gif.gif`, `https://link-to-your-live-demo`, and adjust the content to match your project's specifics. This is just a template to get you started. Make sure to add more details and customize it according to your project's actual implementation.
+```

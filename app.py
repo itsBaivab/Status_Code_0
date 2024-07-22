@@ -84,6 +84,6 @@ if genarate:
                                              anothercontact, Contact_Email, SchoolName, SchoolAddress, city, state,
                                              ZipCode, Country, Blood_Group, Identification_mark, Allergenes))
         genimg = QR_Gen.generate_qr_code(fileURL, p_prompt,  seed)
-        image = Image.open(genimg)
-        st.image(image, caption='Generated QR code')
+        
+        st.image(genimg[0], caption='Generated QR code')
         st.success("QR code generated successfully")

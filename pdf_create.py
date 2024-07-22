@@ -2,7 +2,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from PIL import Image
 import os
-
+import fileupload
 
 def create_student_pdf(data_dict, photo_filename, pdf_filename):
     c = canvas.Canvas(pdf_filename, pagesize=letter)
@@ -90,11 +90,18 @@ def create_qr_code_pdf(Name,Birthday, FathersName,MothersName,Address,Gender,Con
         #print(file_URL)         
         # Construct the curl command
         #curl_command = f"curl -F'file=@{pdf_file_path}' https://ttm.sh"
-        curl_command = f'curl -X POST --data-binary "@{pdf_file_path}" --header "Content-Type: application/pdf" "https://www.filestackapi.com/api/store/S3?key=A2KEL5NMLSdiWJ2LMJP20z"'
-        # Run the curl command and capture the output
-        file_URL = os.popen(curl_command).read().strip()
-        file_URL = file_URL.split('"')[3]
-        print("Uploaded file URL:", str(file_URL))
-        print(file)
-        print(file_URL)
-        return str(str(file_URL))
+        # curl_command = f'curl -X POST --data-binary "@{pdf_file_path}" --header "Content-Type: application/pdf" "https://www.filestackapi.com/api/store/S3?key=A2KEL5NMLSdiWJ2LMJP20z"'
+        # # Run the curl command and capture the output
+        # file_URL = os.popen(curl_command).read().strip()
+        # file_URL = file_URL.split('"')[3]
+        # print("Uploaded file URL:", str(file_URL))
+        # print(file)
+        # print(file_URL)
+        # pdf_path = "student_information_boundary_and_image.pdf"  # Path to your PDF file  
+        container_name = "pdf121"  
+        blob_name = "pdfupload121"  
+  
+        fileupload.upload_pdf_to_blob(pdf_file_path, container_name, blob_name) 
+        
+        return str(str(fileupload.upload_pdf_to_blob(pdf_file_path, container_name, blob_name) ))
+    
